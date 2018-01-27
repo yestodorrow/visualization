@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <title>basic bar built by flotr2</title>
     <style>
-        #chart{
-            width:600px;
-            height:300px;
+        #chart {
+            width: 600px;
+            height: 300px;
         }
     </style>
 </head>
@@ -32,33 +32,38 @@
 </div>
 <!--we do not use jq-->
 <script>
-    var wins=[[]],
-    years=[];//年份数据
-//    构建数据
-    for(var i=2006;i<=2012;i++){
-        wins[0].push([i-2006,Math.floor(Math.random()*(35-10)+20)]);
-        years.push([i-2006,""+i]);
+    var wins = [[]],
+        wins2 = [[]],
+        teams = [],
+    colors=[];
+    //    构建数据
+    for (var i = 2006; i <= 2012; i++) {
+        wins[0].push([i - 2006, Math.floor(Math.random() * (35 - 10) + 20)]);
+        wins2[0].push([i - 2006, Math.floor(Math.random() * (35 - 10) + 20)]);
+        teams.push([i-2006,"A"+(i-2006)]);
+        colors.push( '#'+Math.floor(Math.random()*16777215).toString(16))
     }
 
-    window.onload=function(){
+    window.onload = function () {
+        console.log(teams);
         Flotr.draw(
-                document.getElementById("chart"),//           绑定的元素
-            wins,//数据
-            {
-                title:"demo title for bar chart",
-                bars:{//图表类型
+            document.getElementById("chart"),
+            wins2,{
+                tittle:"demo title for bar chart",
+                colors:colors,
+                bars:{
                     show:true,
-                    barWidth:0.5, //每个柱子占据原来空间的一半
+                    barWidth:0.5,
                     shadowSize:0,
                     fillOpacity:1,
-                    lineWith:0
+                    lineWidth:0
                 },
-                yaxis:{//纵坐标的最小值
+                yaxis:{
                     min:0,
-                    tickDecimals:0       //delete the extra 0
+                    tickDecimals:0
                 },
                 xaxis:{
-                    ticks:years
+                    ticks:teams
                 },
                 grid:{
                     horizontalLines:false,
@@ -66,6 +71,7 @@
                 }
             }
         )
+
     }
 </script>
 </body>
