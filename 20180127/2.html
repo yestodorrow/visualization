@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>basic bar built by flotr2</title>
+    <style>
+        #chart{
+            width:600px;
+            height:300px;
+        }
+    </style>
+</head>
+<body>
+
+<!--for compatibility,
+    we use excanvas.min.js,
+-->
+<!--[if lt ie 9]
+<script src="../assets/js/excanvas.js"></script>
+<![endif]-->
+
+
+<!--use flotr2 from npm
+    npm i flotr2
+-->
+
+<script src="../node_modules/flotr2/flotr2.min.js"></script>
+
+<!--we create a container for the  bar chart-->
+<div id="chart">
+
+</div>
+<!--we do not use jq-->
+<script>
+    var wins=[[]],
+    years=[];//年份数据
+//    构建数据
+    for(var i=2006;i<=2012;i++){
+        wins[0].push([i-2006,Math.floor(Math.random()*(35-10)+20)]);
+        years.push([i-2006,""+i])
+    }
+
+    window.onload=function(){
+        console.log(years);
+        Flotr.draw(
+                document.getElementById("chart"),//           绑定的元素
+            wins,//数据
+            {
+                bars:{//图表类型
+                    show:true,
+                    barWidth:0.5, //每个柱子占据原来空间的一半
+                    shadowSize:0,
+                    fillOpacity:1,
+                    lineWith:0
+                },
+                yaxis:{//纵坐标的最小值
+                    min:0,
+                    tickDecimals:0       //delete the extra 0
+                },
+                xaxis:{
+                    ticks:years
+                },
+                grid:{
+                    horizontalLines:false,
+                    verticalLines:false
+                }
+            }
+        )
+    }
+</script>
+</body>
+</html>
