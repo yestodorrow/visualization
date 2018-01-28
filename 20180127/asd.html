@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery-3.3.1.min.js"></script>
+</head>
+<body>
+<div id="div">
+
+</div>
+
+<script>
+    var url="http://res.app.corpautohome.com/html/annual_party_2018/index.html?flag=yyi2qi&from=timeline&isappinstalled=0";
+    function geturl(){
+        for(var i=0;i<5;i++){
+            var iframe=document.createElement("iframe");
+            iframe.src=url;
+            $("#div").append($(iframe));
+        }
+    }
+    geturl();
+    setInterval(function(){
+        $("#div").append($("#dir"))
+    })
+</script>
+</body>
+</html>
